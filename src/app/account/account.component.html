@@ -1,0 +1,89 @@
+<div class="ac_wrap">
+  <div class="login_view">
+    <h2>Welcome to My Dashboard</h2>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+          aria-selected="true">Card Detail</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+          aria-selected="false">Get Data</a>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <form [formGroup]="cardForm" #demoForm="ngForm" (ngSubmit)="onSubmit(demoForm.value)" novalidate>
+          <div class="form-group input_div">
+            <label>Card Number</label>
+            <div class="card_input">
+              <!-- <input type="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" *ngFor="let x of rows; let i = index" id="input{{i}}" #input ngModel (keyup)="cardNumber(i,input.value)"> -->
+              <input formControlName="c1" #cardNumber1 type="text" class="form-control" required
+                [ngClass]="{ 'is-invalid': submitted && demoForm.form.invalid }" (paste)="cardNumber($event)"
+                [(ngModel)]="cardNumber1to4" name="cardNumber1to4" maxlength="4" minlength="4" (input)="inputValidator($event)"
+                (keyup)="checkInputlength($event, 1)" />
+              <input #cardNumber2 formControlName="c2" type="text" class="form-control" required
+                [ngClass]="{ 'is-invalid': submitted && demoForm.form.invalid }" [(ngModel)]="cardNumber5to8"
+                name="cardNumber5to8" maxlength="4" minlength="4" (input)="inputValidator($event)"
+                (keyup)="checkInputlength($event, 2)" />
+              <input #cardNumber3 formControlName="c3" type="text" class="form-control" required
+                [ngClass]="{ 'is-invalid': submitted && demoForm.form.invalid }" [(ngModel)]="cardNumber9to12"
+                name="cardNumber9to12" maxlength="4" minlength="4" (input)="inputValidator($event)"
+                (keyup)="checkInputlength($event, 3)" />
+              <input #cardNumber4 formControlName="c4" type="text" class="form-control" required
+                [ngClass]="{ 'is-invalid': submitted && demoForm.form.invalid }" [(ngModel)]="cardNumber13to16"
+                name="cardNumber13to16" maxlength="4" minlength="4" (input)="inputValidator($event)"
+                (keyup)="checkInputlength($event, 4)" />
+            </div>
+          </div>
+          <div class="form-group input_div">
+            <label>Card Holder Name</label>
+            <div class="card_input2">
+              <i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="88" height="96" viewBox="0 0 88 96">
+                  <path
+                    d="M44,68.28c-11.752,0-21-12.452-21.924-23.892C17.9,43.78,16,41.168,16,38.58V30.66c0-2.476,2.42-4.26,4-5.168V18.78c0-7.108,2.364-13.688,19.34-13.856A25.62,25.62,0,0,1,54.232,0c7.084,0,13.168,3.18,15.5,8.1,1.732,3.668,1.108,7.676-1.74,11.372v6.024c1.584.9,4,2.688,4,5.168v7.92c0,2.58-1.9,5.2-6.084,5.808C65,55.828,55.752,68.28,44,68.28ZM54.236,3.96A21.7,21.7,0,0,0,41.2,8.492a2.035,2.035,0,0,1-1.2.4c-16,0-16,5.488-16,9.9v7.92a1.994,1.994,0,0,1-1.18,1.808C21.4,29.152,20.076,30.252,20,30.68v7.908c0,1.46,2.156,1.98,4,1.98a1.994,1.994,0,0,1,2,1.98c0,9.868,8.028,21.78,18,21.78s18-11.916,18-21.78a1.994,1.994,0,0,1,2-1.98c1.844,0,4-.516,4-1.98v-7.92c-.084-.468-1.536-1.584-2.816-2.156A1.983,1.983,0,0,1,64,26.7v-7.92a1.974,1.974,0,0,1,.464-1.268c2.224-2.636,2.788-5.316,1.648-7.728C64.464,6.3,59.688,3.96,54.236,3.96Z" />
+                  <path
+                    d="M2,96a1.994,1.994,0,0,1-2-1.98V90.06c0-11.468,9.252-19.8,22-19.8h4.932l5.732-8.468a2.024,2.024,0,0,1,2.776-.552,1.969,1.969,0,0,1,.548,2.748L29.66,73.336A2.009,2.009,0,0,1,28,74.212H22c-10.6,0-18,6.516-18,15.84v3.96A1.99,1.99,0,0,1,2,96Z" />
+                  <path
+                    d="M86,96a2,2,0,0,1-2-1.98V90.06c0-9.328-7.264-15.84-17.672-15.84h-6a2,2,0,0,1-1.648-.86l-6.492-9.344a1.965,1.965,0,0,1,.516-2.752,2.013,2.013,0,0,1,2.78.516l5.9,8.488h4.944C79.084,70.268,88,78.416,88,90.068v3.96A2,2,0,0,1,86,96Z" />
+                  </svg></i>
+              <input type="text" class="form-control" [(ngModel)]="holderName" placeholder="Password" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && cardForm.invalid }" required [ngModelOptions]="{standalone: true}"/>
+            </div>
+          </div>
+          <div class="save_card form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Save this card</label>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="demoForm.form.invalid">Submit</button>
+          <div *ngIf="error" class="alert alert-danger mt-2">{{ error }}</div>
+        </form>
+      </div>
+      <div class="tab-pane fade signup_view" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="data_view">
+          <div class="trans_wrap">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <td style="cursor: default;">id</td>
+                        <td >Employee</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of transaction">
+                        <td>{{item.id}}</td>
+                        <td class="name_p"><figure><img src="{{item.avatar}}" alt="{{item.name}}"></figure> {{item.first_name +' '+ item.last_name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+         </div>  
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

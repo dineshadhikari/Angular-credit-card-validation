@@ -1,0 +1,13 @@
+.navbar-text{
+    a{
+        color: #ddd;
+        cursor: pointer;
+        &.active{
+            color: #f19977;
+        }
+    }
+}
+
+.main_wrap{
+    // margin-top: 56px;
+}
